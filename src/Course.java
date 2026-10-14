@@ -43,6 +43,37 @@ public class Course {
     // add it in the assessments list and then return true.
     //else
     // the function should only return false.
+    boolean nameIsUnique = true,
+            nameIsNotBlank = true,
+            descLeastThreeWords = true,
+            assPointsPositive = true,
+            assPointsLTFifty = true,
+            totalPointsLess101 = true,
+            submissionTypeValid = true,
+            hasGroupName = true,
+            groupNameUnique = true,
+            dateFormatValid = true,
+            dateOrderValid = true;
+
+    if ( nameIsUnique && nameIsNotBlank &&
+         descLeastThreeWords &&
+         assPointsPositive && assPointsLTFifty && totalPointsLess101 &&
+         submissionTypeValid &&
+         (!group || (hasGroupName && groupNameUnique)) &&
+         dateFormatValid && dateOrderValid ) {
+            allInputValid = true;
+            system.out.println("TEST: All input valid");
+         }
+
+
+
+
+
+
+
+    )
+
+
     return valid;
     }
 }
