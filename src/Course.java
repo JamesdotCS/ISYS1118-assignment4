@@ -43,6 +43,13 @@ public class Course {
     // add it in the assessments list and then return true.
     //else
     // the function should only return false.
+
+    //if valid, creates new asssesment
+    if (valid){
+        assessments.add(new Assessment(name, description, points, submissionType,
+                group, groupingName, publishDateTime, dueDateTime, hideDateTime));
+    }
+    //returns true or false
     return valid;
     }
 }
