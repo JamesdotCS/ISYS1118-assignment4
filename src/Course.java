@@ -14,8 +14,29 @@ public class Course {
                                         String submissionType, boolean group, String
                                         groupingName,
                                         String publishDateTime, String dueDateTime,
-                                        String hideDateTime) {
-                                        boolean valid = true;
+                                        String hideDateTime) {boolean valid = true;
+    //Making sure create new assessment fails if one of the conditions are wrong
+    //condition 2 - doing first because i can check for null
+    if (name == null || name.trim().isEmpty()) {
+        //returns false here instead of checking valid because interactions on null later will cause issues
+        return false;
+    }
+    //condition 1 - check name is unique
+    //iterates through all already existing assesments
+    for (Assessment a : assessments) {
+        if (a.getName().equals(name)) {
+            valid = false;
+        }
+    }
+    //condition 3 - description is not null and at least 3 words
+    if (description == null || description.trim().isEmpty() ||
+        description.trim().split("\\s+").length < 3) {
+            valid = false;
+        }    
+    //condition 4 - assignment points are more than 0
+    if (points <= 0) {
+        valid = false;
+    }                              
     //TODO: Validate all the provided parameters.
     //if the assessment parameters meet the given conditions,
     // the function should create a new Assessment object,
