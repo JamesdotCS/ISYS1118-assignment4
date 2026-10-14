@@ -1,8 +1,10 @@
 package src;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
-    private List<Assessment> assessments;
+    //changed this line so it doesnt give a null pointer exception
+    private List<Assessment> assessments = new ArrayList<>();
     //adding getters
     public int getAssessmentsCount() {
         return this.assessments.size();
@@ -44,7 +46,7 @@ public class Course {
     //else
     // the function should only return false.
 
-    //if valid, creates new asssesment
+    //if valid, creates new assessment, otherwise not
     if (valid){
         assessments.add(new Assessment(name, description, points, submissionType,
                 group, groupingName, publishDateTime, dueDateTime, hideDateTime));
