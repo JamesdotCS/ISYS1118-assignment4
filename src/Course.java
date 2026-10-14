@@ -1,4 +1,4 @@
-package course;
+package src;
 import java.util.List;
 
 class Assessment {
@@ -30,7 +30,13 @@ class Assessment {
 
 public class Course {
     private List<Assessment> assessments;
-
+    //adding getters
+    public int getAssessmentsCount() {
+        return this.assessments.size();
+    }
+    public List<Assessment> getAssessments() {
+        return this.assessments;
+    }
     public boolean createNewAssessment(String name, String description, int points,
                                         String submissionType, boolean group, String
                                         groupingName,
