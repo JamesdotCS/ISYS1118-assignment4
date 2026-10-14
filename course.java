@@ -15,6 +15,15 @@ class Assessment {
                     String submissionType, boolean group, String groupingName,
                     String publishDateTime, String dueDateTime, String
         hideDateTime) {
+        this.name = name;
+        this.description = description;
+        this.points = points;
+        this.submissionType = submissionType;
+        this.group = group;
+        this.groupingName = groupingName;
+        this.publishDateTime = publishDateTime;
+        this.dueDateTime = dueDateTime;
+        this.hideDateTime = hideDateTime;
         //TODO: initilise all the attributes
     }
 }
