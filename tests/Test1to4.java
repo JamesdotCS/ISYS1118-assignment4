@@ -1,5 +1,6 @@
 package tests;
 import src.Course;
+import src.Assessment;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestClassOrder;
 import java.util.List;
@@ -14,10 +15,13 @@ class TestsOneToFour {
         String assesmentName = "AssignmentOne";
         Course testing = new Course();
         boolean validName = true;
-
+        
 
         // 2. test
         int length = testing.getAssessmentsCount();
+        for(int i = 0; i < length; ++i){
+
+        }
 
         // 3. ASSERT (Verify the output matches expectations)
         // assertEquals(expected, actual, optional_failure_message)

@@ -1,33 +1,6 @@
 package src;
 import java.util.List;
 
-class Assessment {
-    private String name;
-    private String description;
-    private int points;
-    private String submissionType;
-    private boolean group;
-    private String groupingName;
-    private String publishDateTime;
-    private String dueDateTime;
-    private String hideDateTime;
-    public Assessment(String name, String description, int points,
-                    String submissionType, boolean group, String groupingName,
-                    String publishDateTime, String dueDateTime, String
-        hideDateTime) {
-        this.name = name;
-        this.description = description;
-        this.points = points;
-        this.submissionType = submissionType;
-        this.group = group;
-        this.groupingName = groupingName;
-        this.publishDateTime = publishDateTime;
-        this.dueDateTime = dueDateTime;
-        this.hideDateTime = hideDateTime;
-        //TODO: initilise all the attributes
-    }
-}
-
 public class Course {
     private List<Assessment> assessments;
     //adding getters
