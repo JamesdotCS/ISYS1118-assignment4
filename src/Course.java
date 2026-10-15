@@ -21,8 +21,8 @@ public class Course {
                                         String hideDateTime) {
     //Making sure create new assessment fails if one of the conditions are wrong
     //boolean creation - to make final validation (condition 12) easier, making each condition have its own bool
-    boolean nameIsUnique = true,
-            nameIsNotBlank = true,
+    boolean nameUnique = true,
+            nameNotBlank = true,
             descLeastThreeWords = true,
             pointsPositive = true,
             pointsLessFifty = true,
@@ -33,21 +33,21 @@ public class Course {
             dateFormatValid = true,
             dateOrderValid = true;
 
-    boolean allInputsValid = true;
+    boolean allInputValid = false;
     // I have added all condition bools : Jacob
     // They are descriptive for good practice and so they can be used for cross-checking                                           
 
     //condition 2 - doing first because i can check for null
     if (name == null || name.trim().isEmpty()) {
-        nameIsNotBlank = false;
+        nameNotBlank = false;
     }
     //condition 1 - check name is unique
     //iterates through all already existing assesments
     //only runs if condition 2 is true, dont want a null pointer exception
-    if(nameIsNotBlank) {
+    if(nameNotBlank) {
         for (Assessment a : assessments) {
             if (a.getName().equals(name)) {
-                nameIsUnique = false;
+                nameUnique = false;
             }
         }
     }
@@ -76,7 +76,7 @@ public class Course {
     // Format rules: DD/MM/YYYY hh:mm
     // Must be validated to ensure correct combination, INCLUDING leap years.
 
-    
+
 
 
 
@@ -89,14 +89,17 @@ public class Course {
 
     // Coniditon 12 (check all appropriate validated conditions)
 
-    if ( nameIsUnique && nameIsNotBlank &&
+    if ( nameUnique && nameNotBlank &&
          descLeastThreeWords &&
          pointsPositive && pointsLessFifty && totalPointsLess101 &&
          submissionTypeValid &&
          (!group || (hasGroupName && groupNameUnique)) &&
          dateFormatValid && dateOrderValid ) {
             allInputValid = true;
-            system.out.println("TEST: All input valid");
+            System.out.println("TEST: All input valid");
+         } else {
+            allInputValid = false;
+            System.out.println("TEST: Some input NOT valid");
          }
 
     if (allInputValid){
