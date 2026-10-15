@@ -18,7 +18,7 @@ public class Course {
                                         String submissionType, boolean group, String
                                         groupingName,
                                         String publishDateTime, String dueDateTime,
-                                        String hideDateTime) {boolean valid = true;
+                                        String hideDateTime) {
     //Making sure create new assessment fails if one of the conditions are wrong
     //boolean creation - to make final validation (condition 12) easier, making each condition have its own bool
     boolean nameIsUnique = true,
@@ -32,7 +32,10 @@ public class Course {
             groupNameUnique = true,
             dateFormatValid = true,
             dateOrderValid = true;
-    // TODO - add your condition bools here                                            
+
+    boolean allInputsValid = true;
+    // I have added all condition bools : Jacob
+    // They are descriptive for good practice and so they can be used for cross-checking                                           
 
     //condition 2 - doing first because i can check for null
     if (name == null || name.trim().isEmpty()) {
@@ -56,13 +59,33 @@ public class Course {
     //condition 4 - assignment points are more than 0
     if (points <= 0) {
         pointsPositive = false;
-    }                              
-    //TODO: Validate all the provided parameters.
-    //if the assessment parameters meet the given conditions,
-    // the function should create a new Assessment object,
-    // add it in the assessments list and then return true.
-    //else
-    // the function should only return false.
+    }              
+    
+    //CONDITION 9 - Grouping Name Must Be Unique for Each Assessment
+
+    if (group && hasGroupName) {
+        for (Assessment a : assessments) {
+            if (a.getGroupingName().equalsIgnoreCase(groupingName)) {
+                groupNameUnique = false;
+            }
+
+        }
+    }
+
+    //CONDITION 10 - Date time must be formatted correctly
+    // Format rules: DD/MM/YYYY hh:mm
+    // Must be validated to ensure correct combination, INCLUDING leap years.
+
+    
+
+
+
+    //CONDITION 11 - Hide Date Time after Due date time, after publish date time
+
+    if (dateFormatValid) {
+        // TODO: Date Order
+    }
+    
 
     // Coniditon 12 (check all appropriate validated conditions)
 
@@ -86,3 +109,10 @@ public class Course {
     return allInputValid;
     }
 }
+
+// TODO: Final Check
+//if the assessment parameters meet the given conditions,
+    // the function should create a new Assessment object,
+    // add it in the assessments list and then return true.
+    //else
+    // the function should only return false.
