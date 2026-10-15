@@ -20,7 +20,7 @@ public class Course {
                                         String publishDateTime, String dueDateTime,
                                         String hideDateTime) {boolean valid = true;
     //Making sure create new assessment fails if one of the conditions are wrong
-    //boolean creation - to make condition 12 easier, making each condition have its own bool
+    //boolean creation - to make final validation (condition 12) easier, making each condition have its own bool
     boolean nameIsUnique = true,
             nameIsNotBlank = true,
             descLeastThreeWords = true,
@@ -83,13 +83,6 @@ public class Course {
     //returns true or false
 
 
-
-
-
-
-    )
-
-
-    return valid;
+    return allInputValid;
     }
 }
