@@ -21,34 +21,41 @@ public class Course {
                                         String hideDateTime) {boolean valid = true;
     //Making sure create new assessment fails if one of the conditions are wrong
     //boolean creation - to make condition 12 easier, making each condition have its own bool
-    boolean condition1 = true;
-    boolean condition2 = true;
-    boolean condition3 = true;
-    boolean condition4 = true;
+    boolean nameIsUnique = true,
+            nameIsNotBlank = true,
+            descLeastThreeWords = true,
+            pointsPositive = true,
+            pointsLessFifty = true,
+            totalPointsLess101 = true,
+            submissionTypeValid = true,
+            hasGroupName = true,
+            groupNameUnique = true,
+            dateFormatValid = true,
+            dateOrderValid = true;
     // TODO - add your condition bools here                                            
 
     //condition 2 - doing first because i can check for null
     if (name == null || name.trim().isEmpty()) {
-        condition2 = false;
+        nameIsNotBlank = false;
     }
     //condition 1 - check name is unique
     //iterates through all already existing assesments
     //only runs if condition 2 is true, dont want a null pointer exception
-    if(condition2) {
+    if(nameIsNotBlank) {
         for (Assessment a : assessments) {
             if (a.getName().equals(name)) {
-                condition1 = false;
+                nameIsUnique = false;
             }
         }
     }
     //condition 3 - description is not null and at least 3 words
     if (description == null || description.trim().isEmpty() ||
         description.trim().split("\\s+").length < 3) {
-            condition3 = false;
+            descLeastThreeWords = false;
         }    
     //condition 4 - assignment points are more than 0
     if (points <= 0) {
-        condition4 = false;
+        pointsPositive = false;
     }                              
     //TODO: Validate all the provided parameters.
     //if the assessment parameters meet the given conditions,
@@ -56,21 +63,12 @@ public class Course {
     // add it in the assessments list and then return true.
     //else
     // the function should only return false.
-    boolean nameIsUnique = true,
-            nameIsNotBlank = true,
-            descLeastThreeWords = true,
-            assPointsPositive = true,
-            assPointsLTFifty = true,
-            totalPointsLess101 = true,
-            submissionTypeValid = true,
-            hasGroupName = true,
-            groupNameUnique = true,
-            dateFormatValid = true,
-            dateOrderValid = true;
+
+    // Coniditon 12 (check all appropriate validated conditions)
 
     if ( nameIsUnique && nameIsNotBlank &&
          descLeastThreeWords &&
-         assPointsPositive && assPointsLTFifty && totalPointsLess101 &&
+         pointsPositive && pointsLessFifty && totalPointsLess101 &&
          submissionTypeValid &&
          (!group || (hasGroupName && groupNameUnique)) &&
          dateFormatValid && dateOrderValid ) {
