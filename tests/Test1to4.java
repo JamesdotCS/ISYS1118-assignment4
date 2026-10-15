@@ -17,8 +17,8 @@ class Test1to4 {
     //helper-initilising an assesment that has the variables i dont text valid, to make Assessment creation easier
     private boolean create(String name, String description, int points) {
         return course.createNewAssessment(name, description, points, 
-            "online", false, "", "2026-03-01 09:00", 
-            "2026-03-15 17:00", "2026-04-01 09:00");
+            "online", false, "", "01/03/2026 09:00", 
+            "15/03/2026 17:00", "01/04/2026 09:00");
     }
 
     //Make sure that a valid assessment passes checks

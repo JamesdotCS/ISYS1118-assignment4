@@ -1,6 +1,10 @@
 package src;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import src.Assessment;
 
@@ -14,6 +18,37 @@ public class Course {
     public List<Assessment> getAssessments() {
         return this.assessments;
     }
+
+    // DATE TIME HELPER METHODS FOR CONDITION 10 AND 11
+
+    private static final DateTimeFormatter FMT =
+        DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm")
+                         .withResolverStyle(ResolverStyle.STRICT); // Strick resolver style ensures that invalid dates (like 30/02/2023) are rejected
+
+    static LocalDateTime parseDateTime(String input) {
+        if (input == null) return null;
+        try {
+            return LocalDateTime.parse(input, FMT);
+        } catch (DateTimeParseException e) {
+            return null;   // null means invalid
+        }
+    }
+
+    public static boolean isValidDateTime(String input) {
+        return parseDateTime(input) != null;
+    }
+
+    static boolean areInOrder(String d1, String d2, String d3) {
+        LocalDateTime a = parseDateTime(d1);
+        LocalDateTime b = parseDateTime(d2);
+        LocalDateTime c = parseDateTime(d3);
+
+        if (a == null || b == null || c == null) return false;  // format check fails first
+
+        return a.isBefore(b) && b.isBefore(c);
+    }
+
+
     public boolean createNewAssessment(String name, String description, int points,
                                         String submissionType, boolean group, String
                                         groupingName,
@@ -74,18 +109,20 @@ public class Course {
 
     //CONDITION 10 - Date time must be formatted correctly
     // Format rules: DD/MM/YYYY hh:mm
-    // Must be validated to ensure correct combination, INCLUDING leap years.
+    // Must be validated to ensure correct combination, INCLUDING leap years. Strict.
+    // See helper methods above for date time validation and parsing
 
-
-
-
+    if (!isValidDateTime(publishDateTime) || !isValidDateTime(dueDateTime) || !isValidDateTime(hideDateTime)) {
+        dateFormatValid = false;
+    } 
 
     //CONDITION 11 - Hide Date Time after Due date time, after publish date time
 
     if (dateFormatValid) {
-        // TODO: Date Order
-    }
-    
+        if (!areInOrder(publishDateTime, dueDateTime, hideDateTime)) {
+            dateOrderValid = false;
+        }
+    }    
 
     // Coniditon 12 (check all appropriate validated conditions)
 
