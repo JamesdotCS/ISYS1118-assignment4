@@ -18,26 +18,35 @@ public class Course {
                                         String publishDateTime, String dueDateTime,
                                         String hideDateTime) {boolean valid = true;
     //Making sure create new assessment fails if one of the conditions are wrong
+    //boolean creation - to make condition 12 easier, making each condition have its own bool
+    boolean condition1 = true;
+    boolean condition2 = true;
+    boolean condition3 = true;
+    boolean condition4 = true;
+    // TODO - add your condition bools here                                            
+
     //condition 2 - doing first because i can check for null
     if (name == null || name.trim().isEmpty()) {
-        //returns false here instead of checking valid because interactions on null later will cause issues
-        return false;
+        condition2 = false;
     }
     //condition 1 - check name is unique
     //iterates through all already existing assesments
-    for (Assessment a : assessments) {
-        if (a.getName().equals(name)) {
-            valid = false;
+    //only runs if condition 2 is true, dont want a null pointer exception
+    if(condition2) {
+        for (Assessment a : assessments) {
+            if (a.getName().equals(name)) {
+                condition1 = false;
+            }
         }
     }
     //condition 3 - description is not null and at least 3 words
     if (description == null || description.trim().isEmpty() ||
         description.trim().split("\\s+").length < 3) {
-            valid = false;
+            condition3 = false;
         }    
     //condition 4 - assignment points are more than 0
     if (points <= 0) {
-        valid = false;
+        condition4 = false;
     }                              
     //TODO: Validate all the provided parameters.
     //if the assessment parameters meet the given conditions,
@@ -45,7 +54,11 @@ public class Course {
     // add it in the assessments list and then return true.
     //else
     // the function should only return false.
-
+    
+    //TODO add your conditions into this- jacob feel free to change it for 12, making sure my tests can run
+    if(!(condition1 && condition2 && condition3 && condition4)) {
+        valid = false;
+    }
     //if valid, creates new assessment, otherwise not
     if (valid){
         assessments.add(new Assessment(name, description, points, submissionType,
