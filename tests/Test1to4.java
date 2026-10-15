@@ -14,14 +14,14 @@ class Test1to4 {
         course = new Course();
     }
 
-    //helper-initilising an assesment that i can change my values of
+    //helper-initilising an assesment that has the variables i dont text valid, to make Assessment creation easier
     private boolean create(String name, String description, int points) {
         return course.createNewAssessment(name, description, points, 
             "online", false, "", "2026-03-01 09:00", 
             "2026-03-15 17:00", "2026-04-01 09:00");
     }
 
-    //Make sure if valid it pasts
+    //Make sure that a valid assessment passes checks
     @Test
     void validAssessmentIsAccepted() {
         assertTrue(create("assignment 1", "write a report", 10));
@@ -39,7 +39,6 @@ class Test1to4 {
         //make sure there is only one assessment that exists
         assertEquals(1, course.getAssessmentsCount());
     }
-
     //test that non-dulplicate names are accepted
     @Test 
     void differentNameIsAcceoted() {
@@ -140,9 +139,8 @@ class Test1to4 {
         System.out.println("Created: " + course.getAssessmentsCount());
     }
     
-    //condition four 
-    //test if the points work
-    //more than 0 points
+    //condition four - points must be greater than 0
+    //test if more than 0 points
     @Test
     void pointsAboveZero() {
         //test with 10 points
@@ -150,7 +148,7 @@ class Test1to4 {
         //make sure an assessment exists
         assertEquals(1, course.getAssessmentsCount());
     }
-    //exactly 0 points
+    //test if exactly 0 points is accepted
     @Test
     void pointsAtZero() {
         //test with 0 points
@@ -158,7 +156,7 @@ class Test1to4 {
         //make sure no assessment exists
         assertEquals(0, course.getAssessmentsCount());
     }
-    //negative points
+    //test if negative points are accepted
     @Test
     void pointsBelowZero() {
         //test with -10 points
