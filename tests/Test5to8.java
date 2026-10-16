@@ -26,6 +26,11 @@ public class Test5to8 {
         return course.createNewAssessment(name,"write a report", 10, submissionType, false, "", "01/03/2026 09:00", "15/03/2026 17:00", "01/04/2026 09:00");
     }
 
+    private boolean createWithGroup(boolean group, String groupingName) {
+    return course.createNewAssessment(
+        "assessment 1", "write a report", 10, "pdf", group, groupingName, "01/03/2026 09:00", "15/03/2026 17:00", "01/04/2026 09:00");
+   }
+
     //Condition 5 - No single assessment can exceed 50 points
     @Test
     void pointsBelowMaximumAccepted() {
@@ -141,6 +146,37 @@ public class Test5to8 {
         assertFalse(createWithType("assessment 1", null));
 
         assertEquals(0, course.getAssessmentsCount());
+    }
+
+    //Condition 8 - Group assessments must have a grouping name
+    @Test
+    void validGroupNameAccepted() {
+        assertTrue(createWithGroup(true, "Group A"));
+        assertEquals(1, course.getAssessmentsCount());
+    }
+
+    @Test
+    void emptyGroupNameRejected() {
+        assertFalse(createWithGroup(true, ""));
+        assertEquals(0, course.getAssessmentsCount());
+    }
+
+    @Test
+    void whitespaceGroupNameRejected() {
+        assertFalse(createWithGroup(true, "   "));
+        assertEquals(0, course.getAssessmentsCount());
+    }
+
+    @Test
+    void nullGroupNameRejected() {
+        assertFalse(createWithGroup(true, null));
+        assertEquals(0, course.getAssessmentsCount());
+    }
+
+    @Test
+    void individualAssessmentWithoutGroupNameAccepted() {
+        assertTrue(createWithGroup(false, ""));
+        assertEquals(1, course.getAssessmentsCount());
     }
 
 }
