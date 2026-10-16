@@ -100,6 +100,17 @@ public class Course {
     if (points > 50) {
         pointsLessFifty = false;
     }
+
+    //Condition 6 - Total assessment points cannot exceed 100
+    int totalPoints = points;
+
+    for (Assessment a : assessments) {
+        totalPoints += a.getPoints();
+    }
+
+    if (totalPoints > 100) {
+        totalPointsLess101 = false;
+    }
     
     //CONDITION 9 - Grouping Name Must Be Unique for Each Assessment
 
