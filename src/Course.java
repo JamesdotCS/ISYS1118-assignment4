@@ -94,7 +94,12 @@ public class Course {
     //condition 4 - assignment points are more than 0
     if (points <= 0) {
         pointsPositive = false;
-    }              
+    } 
+    
+    //Condition 5 - No single assessment can exceed 50 points
+    if (points > 50) {
+        pointsLessFifty = false;
+    }
     
     //CONDITION 9 - Grouping Name Must Be Unique for Each Assessment
 
