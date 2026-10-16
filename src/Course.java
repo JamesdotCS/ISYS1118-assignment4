@@ -111,6 +111,11 @@ public class Course {
     if (totalPoints > 100) {
         totalPointsLess101 = false;
     }
+
+    //Condition 7 - Submission type must be pdf, zip or doc
+    if (submissionType == null || (!submissionType.equals("pdf") && !submissionType.equals("zip") && !submissionType.equals("doc"))) {
+        submissionTypeValid = false;
+    }
     
     //CONDITION 9 - Grouping Name Must Be Unique for Each Assessment
 
