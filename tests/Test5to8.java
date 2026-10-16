@@ -48,5 +48,43 @@ public class Test5to8 {
         assertEquals(0, course.getAssessmentsCount());
     }
 
+    //Condition 6 - Total assessment points cannot exceed 100
+    @Test
+    void totalPointsBelowMaximumAccepted() {
+        assertEquals(0, course.getAssessmentsCount());
+
+        assertTrue(create("assessment 1", 50));
+        assertTrue(create("assessment 2", 49));
+
+        assertEquals(2, course.getAssessmentsCount());
+        assertEquals(49, course.getAssessments().get(1).getPoints());
+    }
+
+    @Test
+    void totalPointsAtMaximumAccepted() {
+        assertEquals(0, course.getAssessmentsCount());
+
+        assertTrue(create("assessment 1", 50));
+        assertTrue(create("assessment 2", 50));
+
+        assertEquals(2, course.getAssessmentsCount());
+        assertEquals(50, course.getAssessments().get(1).getPoints());
+    }
+
+    @Test
+    void totalPointsAboveMaximumRejected() {
+        assertEquals(0, course.getAssessmentsCount());
+
+        assertTrue(create("assessment 1", 50));
+        assertTrue(create("assessment 2", 50));
+
+        assertFalse(create("assessment 3", 1));
+
+        assertEquals(2, course.getAssessmentsCount());
+        assertEquals(100,
+            course.getAssessments().get(0).getPoints()
+            + course.getAssessments().get(1).getPoints());
+    }
+
 
 }
