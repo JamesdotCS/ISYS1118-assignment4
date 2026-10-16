@@ -21,6 +21,11 @@ public class Test5to8 {
         return course.createNewAssessment(name, "write a report", points, "pdf", false, "", "01/03/2026 09:00", "15/03/2026 17:00", "01/04/2026 09:00");
     }
 
+    //helper for testing different submission types
+    private boolean createWithType(String name, String submissionType) {
+        return course.createNewAssessment(name,"write a report", 10, submissionType, false, "", "01/03/2026 09:00", "15/03/2026 17:00", "01/04/2026 09:00");
+    }
+
     //Condition 5 - No single assessment can exceed 50 points
     @Test
     void pointsBelowMaximumAccepted() {
@@ -86,5 +91,56 @@ public class Test5to8 {
             + course.getAssessments().get(1).getPoints());
     }
 
+    //Condition 7 - Submission type must be pdf, zip or doc
+    @Test
+    void pdfSubmissionTypeAccepted() {
+        assertEquals(0, course.getAssessmentsCount());
+
+        assertTrue(createWithType("assessment 1", "pdf"));
+
+        assertEquals(1, course.getAssessmentsCount());
+        assertEquals("pdf",
+            course.getAssessments().get(0).getSubmissionType());
+    }
+
+    @Test
+    void zipSubmissionTypeAccepted() {
+        assertEquals(0, course.getAssessmentsCount());
+
+        assertTrue(createWithType("assessment 1", "zip"));
+
+        assertEquals(1, course.getAssessmentsCount());
+        assertEquals("zip",
+            course.getAssessments().get(0).getSubmissionType());
+    }
+
+    @Test
+    void docSubmissionTypeAccepted() {
+        assertEquals(0, course.getAssessmentsCount());
+
+        assertTrue(createWithType("assessment 1", "doc"));
+
+        assertEquals(1, course.getAssessmentsCount());
+        assertEquals("doc",
+            course.getAssessments().get(0).getSubmissionType());
+    }
+
+    @Test
+    void invalidSubmissionTypeRejected() {
+        assertEquals(0, course.getAssessmentsCount());
+
+        assertFalse(createWithType("assessment 1", "txt"));
+
+        assertEquals(0, course.getAssessmentsCount());
+    }
+
+    @Test
+    void nullSubmissionTypeRejected() {
+        assertEquals(0, course.getAssessmentsCount());
+
+        assertFalse(createWithType("assessment 1", null));
+
+        assertEquals(0, course.getAssessmentsCount());
+    }
 
 }
