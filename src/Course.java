@@ -116,7 +116,12 @@ public class Course {
     if (submissionType == null || (!submissionType.equals("pdf") && !submissionType.equals("zip") && !submissionType.equals("doc"))) {
         submissionTypeValid = false;
     }
-    
+
+    //Condition 8 - Group assessments must have a grouping name
+    if (group && (groupingName == null || groupingName.trim().isEmpty())) {
+        hasGroupName = false;
+    }
+
     //CONDITION 9 - Grouping Name Must Be Unique for Each Assessment
 
     if (group && hasGroupName) {
