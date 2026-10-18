@@ -157,10 +157,10 @@ public class Course {
          (!group || (hasGroupName && groupNameUnique)) &&
          dateFormatValid && dateOrderValid ) {
             allInputValid = true;
-            System.out.println("TEST: All input valid, assessment created");
+            // System.out.println("TEST: All input valid, assessment created");
          } else {
             allInputValid = false;
-            System.out.println("TEST: Some input NOT valid, assessment NOT created");
+            // System.out.println("TEST: Some input NOT valid, assessment NOT created");
          }
 
     if (allInputValid){
@@ -173,10 +173,3 @@ public class Course {
     return allInputValid;
     }
 }
-
-// TODO: Final Check
-//if the assessment parameters meet the given conditions,
-    // the function should create a new Assessment object,
-    // add it in the assessments list and then return true.
-    //else
-    // the function should only return false.

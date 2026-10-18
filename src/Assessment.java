@@ -23,7 +23,6 @@ public class Assessment {
         this.publishDateTime = publishDateTime;
         this.dueDateTime = dueDateTime;
         this.hideDateTime = hideDateTime;
-        //TODO: initilise all the attributes
     }
     //getters for testing
     public String getName() {
