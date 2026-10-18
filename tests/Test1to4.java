@@ -17,7 +17,7 @@ class Test1to4 {
     //helper-initilising an assesment that has the variables i dont text valid, to make Assessment creation easier
     private boolean create(String name, String description, int points) {
         return course.createNewAssessment(name, description, points, 
-            "online", false, "", "01/03/2026 09:00", 
+            "pdf", false, "", "01/03/2026 09:00", 
             "15/03/2026 17:00", "01/04/2026 09:00");
     }
 
@@ -41,7 +41,7 @@ class Test1to4 {
     }
     //test that non-dulplicate names are accepted
     @Test 
-    void differentNameIsAcceoted() {
+    void differentNameIsAccepted() {
         //create an assessment called assignment one
         assertTrue(create("assignment 1", "write a report", 10));
         //create an assessment called assignment two - new name so should work

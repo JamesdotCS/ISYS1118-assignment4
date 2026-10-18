@@ -92,8 +92,34 @@ public class Course {
     //condition 4 - assignment points are more than 0
     if (points <= 0) {
         pointsPositive = false;
-    }              
+    } 
     
+    //Condition 5 - No single assessment can exceed 50 points
+    if (points > 50) {
+        pointsLessFifty = false;
+    }
+
+    //Condition 6 - Total assessment points cannot exceed 100
+    int totalPoints = points;
+
+    for (Assessment a : assessments) {
+        totalPoints += a.getPoints();
+    }
+
+    if (totalPoints > 100) {
+        totalPointsLess101 = false;
+    }
+
+    //Condition 7 - Submission type must be pdf, zip or doc
+    if (submissionType == null || (!submissionType.equals("pdf") && !submissionType.equals("zip") && !submissionType.equals("doc"))) {
+        submissionTypeValid = false;
+    }
+
+    //Condition 8 - Group assessments must have a grouping name
+    if (group && (groupingName == null || groupingName.trim().isEmpty())) {
+        hasGroupName = false;
+    }
+
     //CONDITION 9 - Grouping Name Must Be Unique for Each Assessment
 
     if (group && hasGroupName) {
