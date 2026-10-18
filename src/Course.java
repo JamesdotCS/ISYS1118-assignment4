@@ -6,8 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
-import src.Assessment;
-
 public class Course {
     //changed this line so it doesnt give a null pointer exception
     private List<Assessment> assessments = new ArrayList<>();
