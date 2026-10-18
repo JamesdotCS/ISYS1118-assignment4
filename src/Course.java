@@ -1,12 +1,10 @@
-package src;
+package src; // maybe update package paths
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
-
-import src.Assessment;
 
 public class Course {
     //changed this line so it doesnt give a null pointer exception
@@ -19,7 +17,7 @@ public class Course {
         return this.assessments;
     }
 
-    // DATE TIME HELPER METHODS FOR CONDITION 10 AND 11
+    // DATE/TIME HELPER METHODS FOR CONDITION 10 AND 11
 
     private static final DateTimeFormatter FMT =
         DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm")
@@ -133,10 +131,10 @@ public class Course {
          (!group || (hasGroupName && groupNameUnique)) &&
          dateFormatValid && dateOrderValid ) {
             allInputValid = true;
-            System.out.println("TEST: All input valid");
+            System.out.println("TEST: All input valid, assessment created");
          } else {
             allInputValid = false;
-            System.out.println("TEST: Some input NOT valid");
+            System.out.println("TEST: Some input NOT valid, assessment NOT created");
          }
 
     if (allInputValid){
