@@ -19,31 +19,40 @@ public class Course {
 
     // DATE/TIME HELPER METHODS FOR CONDITION 10 AND 11
 
+    // Java Time API - using ResolverStyle.Strict to ensure date rejection if invalid
     private static final DateTimeFormatter FMT =
         DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm")
                          .withResolverStyle(ResolverStyle.STRICT); // Strick resolver style ensures that invalid dates (like 30/02/2023) are rejected
 
-    static LocalDateTime parseDateTime(String input) {
+    // Helper method to parse a date/time string into a LocalDateTime object and check whether it works (with our formatter)          
+    private static LocalDateTime parseDateTime(String input) {
         if (input == null) return null;
+
+        // This attempts to put the input into our datetime format
         try {
             return LocalDateTime.parse(input, FMT);
         } catch (DateTimeParseException e) {
             return null;   // null means invalid
         }
+
     }
 
+    // Actual Helper To Use For Condition 10
     public static boolean isValidDateTime(String input) {
         return parseDateTime(input) != null;
     }
 
+    // Helper for Condition 11 to check if strings are in order
     static boolean areInOrder(String d1, String d2, String d3) {
+
+        // Pass each object into a localdatetime object
         LocalDateTime a = parseDateTime(d1);
         LocalDateTime b = parseDateTime(d2);
         LocalDateTime c = parseDateTime(d3);
 
         if (a == null || b == null || c == null) return false;  // format check fails first
 
-        return a.isBefore(b) && b.isBefore(c);
+        return a.isBefore(b) && b.isBefore(c); //return if they are in order or not
     }
 
 
