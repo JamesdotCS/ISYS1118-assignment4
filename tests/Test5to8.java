@@ -149,7 +149,7 @@ public class Test5to8 {
     //Condition 8 - Group assessments must have a grouping name
     @Test
     void validGroupNameAccepted() {
-        assertTrue(createWithGroup(true, "Group A"));
+        assertTrue(createWithGroup(true, "groupa"));
         assertEquals(1, course.getAssessmentsCount());
     }
 
